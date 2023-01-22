@@ -1,22 +1,13 @@
 import React from "react";
+import Nav from "./components/Nav";
+import NoContentPage from "./components/NoContentPage";
 import "./css/App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p className="font-black italic">
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link font-bold underline"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex-row flex bg-neutral-900 text-white h-screen w-screen">
+      <Nav />
+      <NoContentPage />
     </div>
   );
 }
