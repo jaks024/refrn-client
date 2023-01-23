@@ -1,13 +1,13 @@
 import React from "react";
+import CollectionPage from "./components/CollectionPage";
 import Nav from "./components/Nav";
-import NoContentPage from "./components/NoContentPage";
 import "./css/App.css";
 
 function App() {
   return (
-    <div className="flex-row flex bg-neutral-900 text-white h-screen w-screen">
+    <div className="flex-row flex bg-neutral-900 h-screen w-screen text-amber-50">
       <Nav />
-      <NoContentPage />
+      <CollectionPage />
     </div>
   );
 }

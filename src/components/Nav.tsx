@@ -3,8 +3,8 @@ import NavCollection from "./NavCollection";
 
 function Nav() {
   return (
-    <div className="w-72 h-full flex flex-col border-r border-neutral-700">
-      <h1 className="w-full font-black text-4xl leading-loose px-6 pt-2 pb-4">
+    <div className="w-72 h-full flex flex-col border-r border-neutral-800 min-w-[300px]">
+      <h1 className="w-full font-black text-4xl leading-loose px-6 pt-4 pb-2">
         refrn.
       </h1>
       <NavCollection />
