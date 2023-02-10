@@ -1,4 +1,3 @@
-import React from "react";
 import CollectionPage from "./components/CollectionPage";
 import Nav from "./components/Nav";
 import "./css/App.css";

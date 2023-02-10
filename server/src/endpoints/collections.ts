@@ -1,9 +1,9 @@
-import express, { Express, Request, Response } from "express";
+import express, { Request, Response } from "express";
 
-const router = express.Router();
+const collectionRouter = express.Router();
 
-router.get("/", (req: Request, res: Response) => {
+collectionRouter.get("/", (req: Request, res: Response) => {
   res.send("collections");
 });
 
-module.exports = router;
+export default collectionRouter;
