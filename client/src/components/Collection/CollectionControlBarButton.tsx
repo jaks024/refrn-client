@@ -1,4 +1,4 @@
-function CollectionControlBarButton() {
+export function CollectionControlBarButton() {
   return (
     <button
       type="button"
@@ -8,5 +8,3 @@ function CollectionControlBarButton() {
     </button>
   );
 }
-
-export default CollectionControlBarButton;

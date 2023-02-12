@@ -1,6 +1,6 @@
-import CollectionControlBarButton from "./CollectionControlBarButton";
+import { CollectionControlBarButton } from './CollectionControlBarButton';
 
-function CollectionControlBar() {
+export function CollectionControlBar() {
   return (
     <div className="absolute h-14 bottom-0 bg-neutral-900 w-full flex justify-between px-6 border-t border-neutral-800">
       <span className="leading-loose pt-2.5 font-bold">your collection 1</span>
@@ -14,5 +14,3 @@ function CollectionControlBar() {
     </div>
   );
 }
-
-export default CollectionControlBar;

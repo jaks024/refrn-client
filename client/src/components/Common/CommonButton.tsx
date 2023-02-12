@@ -1,4 +1,4 @@
-function CommonButton() {
+export function CommonButton() {
   return (
     <div>
       <button
@@ -10,5 +10,3 @@ function CommonButton() {
     </div>
   );
 }
-
-export default CommonButton;

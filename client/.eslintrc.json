@@ -1,35 +1,51 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "react-app",
-        "airbnb",
-        "airbnb-typescript",
-        "plugin:import/typescript",
-        "plugin:prettier/recommended"
-    ],
-    "overrides": [
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module",
-        "project": "./tsconfig.json"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint",
-        "prettier"
-    ],
-    "rules": {
-        "react/react-in-jsx-scope": ["off"],
-        "react/jsx-uses-react": ["off"],
-        "react/jsx-props-no-spreading": ["warn"],
-        "react/no-unescaped-entities": ["off"]
-    }
+	"env": {
+		"browser": true,
+		"es6": true,
+		"jest": true
+	},
+	"extends": [
+		"airbnb",
+		"airbnb/hooks",
+		"airbnb-typescript",
+		"plugin:@typescript-eslint/recommended",
+		"prettier",
+		"plugin:import/typescript"
+	],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"project": "./tsconfig.json"
+	},
+	"plugins": ["import", "@typescript-eslint", "prettier"],
+	"rules": {
+		"prettier/prettier": ["error"],
+
+		"import/prefer-default-export": "off",
+
+		"arrow-body-style": "off",
+
+		"react/jsx-no-useless-fragment": "off",
+		"react/require-default-props": "warn",
+		"react/no-array-index-key": "warn",
+		"react/jsx-uses-react": "off",
+		"react/react-in-jsx-scope": "off",
+		"react/function-component-definition": "off",
+		"react/jsx-props-no-spreading": "off",
+		"react/no-unstable-nested-components": "off"
+	},
+	"settings": {
+		"import/resolver": {
+		  "node": {
+			"extensions": [".js", ".jsx", ".ts", ".tsx"]
+		  }
+		}
+	},
+	"overrides": [
+		{
+			"files": ["**/*.stories.*"],
+			"rules": {
+				"import/no-anonymous-default-export": "off"
+			}
+		}
+	]
 }

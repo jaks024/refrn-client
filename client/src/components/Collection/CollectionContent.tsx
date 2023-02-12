@@ -1,6 +1,6 @@
-import CollectionImage from "./CollectionImage";
+import { CollectionImage } from './CollectionImage';
 
-function CollectionContent() {
+export const CollectionContent = () => {
   return (
     <div className="w-full h-fit px-6 py-2">
       <CollectionImage />
@@ -23,6 +23,4 @@ function CollectionContent() {
       <CollectionImage />
     </div>
   );
-}
-
-export default CollectionContent;
+};

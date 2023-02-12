@@ -1,6 +1,6 @@
-import NavCollectionItem from "./NavCollectionItem";
+import { NavCollectionItem } from './NavCollectionItem';
 
-function NavCollection() {
+export function NavCollection() {
   return (
     <div className="px-6 grow">
       <h2 className="font-bold text-xl leading-loose">your collections</h2>
@@ -21,5 +21,3 @@ function NavCollection() {
     </div>
   );
 }
-
-export default NavCollection;
