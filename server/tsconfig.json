@@ -104,5 +104,5 @@
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"],
-  "compileOnSave": true
+  "extends": "./tsconfig.paths.json"
 }
