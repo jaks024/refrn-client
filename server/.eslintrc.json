@@ -1,29 +1,41 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
+	"env": {
+		"browser": true,
+		"es6": true,
+		"jest": true
+	},
+	"extends": [
         "airbnb-base",
         "airbnb-typescript/base",
-        "plugin:import/typescript",
-        "plugin:prettier/recommended"
-    ],
-    "overrides": [
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module",
-        "project": "./tsconfig.json"
-    },
-    "plugins": [
-        "@typescript-eslint",
-        "prettier"
-    ],
-    "rules": {
-    }
+		"plugin:@typescript-eslint/recommended",
+		"prettier",
+		"plugin:import/typescript"
+	],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"project": "./tsconfig.json"
+	},
+	"plugins": ["import", "@typescript-eslint", "prettier"],
+	"rules": {
+		"prettier/prettier": ["error"],
+
+		"import/prefer-default-export": "off",
+
+		"arrow-body-style": "off"
+	},
+	"settings": {
+		"import/resolver": {
+		  "node": {
+			"extensions": [".ts"]
+		  }
+		}
+	},
+	"overrides": [
+		{
+			"files": ["**/*.stories.*"],
+			"rules": {
+				"import/no-anonymous-default-export": "off"
+			}
+		}
+	]
 }
