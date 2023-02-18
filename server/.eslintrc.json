@@ -7,9 +7,7 @@
 	"extends": [
         "airbnb-base",
         "airbnb-typescript/base",
-		"plugin:@typescript-eslint/recommended",
-		"prettier",
-		"plugin:import/typescript"
+		"prettier"
 	],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
@@ -21,7 +19,19 @@
 
 		"import/prefer-default-export": "off",
 
-		"arrow-body-style": "off"
+		"arrow-body-style": "off",
+		"import/extensions": [
+			"error",
+			"ignorePackages",
+			{
+			  "": "never",
+			  "js": "never",
+			  "jsx": "never",
+			  "ts": "never",
+			  "tsx": "never"
+			}
+		 ],
+		 "linebreak-style": 0
 	},
 	"settings": {
 		"import/resolver": {

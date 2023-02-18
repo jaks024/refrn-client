@@ -2,6 +2,6 @@ export interface Collection {
   id: string;
   name: string;
   description: string;
-  images: string[];
-  cover: ImageBitmap;
+  imageIds: string[];
+  coverUrl: string;
 }

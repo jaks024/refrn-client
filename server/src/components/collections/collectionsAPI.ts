@@ -8,10 +8,10 @@ collectionRouter.get(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const response = await getCollection(req.params.id);
+      res.send(response);
     } catch (error) {
       next(error);
     }
-    res.send(req.params);
   },
 );
 
