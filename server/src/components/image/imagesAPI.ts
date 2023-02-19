@@ -1,27 +1,57 @@
 import express, { NextFunction, Request, Response } from 'express';
-import { createImage } from './imagesController';
-import { ImageDto } from './types';
+import {
+  createImage,
+  deleteImage,
+  getImage,
+  updateImage,
+} from './imagesController';
 
 export const imageRouter = express.Router();
 
-imageRouter.get('/', (req: Request, res: Response) => {
-  res.send('image');
-});
+imageRouter.get(
+  '/:id',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const response = await getImage(req.params.id);
+      res.send(response);
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 imageRouter.post(
   '/',
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       console.log('received psot');
-      const testObj: ImageDto = {
-        url: 'test url',
-        name: 'test name',
-        description: 'test desc',
-        source: 'test source',
-        tags: ['t1', 't2'],
-        transforms: ['trans1', 'trans2'],
-      };
-      const response = await createImage(testObj);
+      const response = await createImage(req.body);
+      res.send(response);
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+
+imageRouter.put(
+  '/:id',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      console.log('received update');
+      const response = await updateImage(req.params.id, req.body);
+      res.send(response);
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+
+imageRouter.delete(
+  '/:id',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      console.log('received delete');
+      const response = await deleteImage(req.params.id);
       res.send(response);
     } catch (error) {
       next(error);
