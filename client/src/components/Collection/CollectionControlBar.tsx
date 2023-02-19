@@ -1,6 +1,6 @@
 import { CollectionControlBarButton } from './CollectionControlBarButton';
 
-export function CollectionControlBar() {
+export const CollectionControlBar = () => {
   return (
     <div className="absolute h-14 bottom-0 bg-neutral-900 w-full flex justify-between px-6 border-t border-neutral-800">
       <span className="leading-loose pt-2.5 font-bold">your collection 1</span>
@@ -13,4 +13,4 @@ export function CollectionControlBar() {
       </div>
     </div>
   );
-}
+};

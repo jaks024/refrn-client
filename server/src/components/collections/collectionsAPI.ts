@@ -1,5 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
-import { getCollection } from './collectionsController';
+import { createCollection, getCollection } from './collectionsController';
+import { CollectionDto } from './types';
 
 export const collectionRouter = express.Router();
 
@@ -15,9 +16,24 @@ collectionRouter.get(
   },
 );
 
-collectionRouter.post('/', (req: Request, res: Response) => {
-  res.send('received collection');
-});
+collectionRouter.post(
+  '/',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      console.log('received psot');
+      const testObj: CollectionDto = {
+        name: 'test name',
+        description: 'test desc',
+        imageIds: ['123', 'abc'],
+        cover: 'coverurl',
+      };
+      const response = await createCollection(testObj);
+      res.send(response);
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 collectionRouter.put('/:id', (req: Request, res: Response) => {
   res.send('updated collection');

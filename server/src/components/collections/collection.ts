@@ -1,5 +1,5 @@
-export interface Collection {
-  id: string;
+export default interface Collection {
+  _id: string;
   name: string;
   description: string;
   imageIds: string[];

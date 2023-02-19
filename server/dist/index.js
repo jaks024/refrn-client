@@ -1,16 +1,14 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const endpoints_1 = require("./endpoints");
-const app = (0, express_1.default)();
-const port = 8000;
-app.use('/image', endpoints_1.imageRouter);
-app.use('/collection', endpoints_1.collectionRouter);
+import express from 'express';
+import * as dotenv from 'dotenv';
+import { collectionRouter } from './components/collections';
+import { imageRouter } from './components/image';
+dotenv.config();
+const app = express();
+const port = process.env.PORT;
+app.use('/image', imageRouter);
+app.use('/collection', collectionRouter);
 app.get('/', (req, res) => {
-    res.send('Hello World! a');
+    res.send('Hello World! aaa');
 });
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

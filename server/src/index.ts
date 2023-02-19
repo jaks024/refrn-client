@@ -2,11 +2,14 @@ import express, { Express, Response, Request } from 'express';
 import * as dotenv from 'dotenv';
 import { collectionRouter } from './components/collections';
 import { imageRouter } from './components/image';
+import { connect } from './database';
 
-dotenv.config();
+dotenv.config({ path: './.env.development.local' });
 
 const app: Express = express();
 const port = process.env.PORT;
+
+connect();
 
 app.use('/image', imageRouter);
 app.use('/collection', collectionRouter);

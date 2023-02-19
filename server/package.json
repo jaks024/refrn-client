@@ -6,7 +6,7 @@
   "scripts": {
     "b": "npx eslint ./src && npx tsc --build",
     "w": "npx tsc --watch",
-    "s": "npx nodemon ./src/index.ts --exec \"npm run lint && ts-node ./src/index.ts\"",
+    "s": "npx nodemon ./src/index.ts --exec \"node --experimental-specifier-resolution=node --loader ts-node/esm ./src/index.ts\"",
     "lint": "npx eslint --quiet --cache ./src --ext .ts",
     "lint:fix": "npx eslint --quiet --cache --fix ./src --ext .ts"
   },
