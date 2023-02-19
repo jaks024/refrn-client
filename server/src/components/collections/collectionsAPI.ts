@@ -1,6 +1,10 @@
 import express, { Request, Response, NextFunction } from 'express';
-import { createCollection, getCollection } from './collectionsController';
-import { CollectionDto } from './types';
+import {
+  createCollection,
+  deleteCollection,
+  getCollection,
+  updateCollection,
+} from './collectionsController';
 
 export const collectionRouter = express.Router();
 
@@ -21,13 +25,7 @@ collectionRouter.post(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       console.log('received psot');
-      const testObj: CollectionDto = {
-        name: 'test name',
-        description: 'test desc',
-        imageIds: ['123', 'abc'],
-        cover: 'coverurl',
-      };
-      const response = await createCollection(testObj);
+      const response = await createCollection(req.body);
       res.send(response);
     } catch (error) {
       next(error);
@@ -35,10 +33,28 @@ collectionRouter.post(
   },
 );
 
-collectionRouter.put('/:id', (req: Request, res: Response) => {
-  res.send('updated collection');
-});
+collectionRouter.put(
+  '/:id',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      console.log('received update');
+      const response = await updateCollection(req.params.id, req.body);
+      res.send(response);
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
-collectionRouter.delete('/:id', (req: Request, res: Response) => {
-  res.send('deleted collection');
-});
+collectionRouter.delete(
+  '/:id',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      console.log('received delete');
+      const response = await deleteCollection(req.params.id);
+      res.send(response);
+    } catch (error) {
+      next(error);
+    }
+  },
+);

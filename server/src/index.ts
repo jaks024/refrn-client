@@ -11,6 +11,7 @@ const port = process.env.PORT;
 
 connect();
 
+app.use(express.json());
 app.use('/image', imageRouter);
 app.use('/collection', collectionRouter);
 
