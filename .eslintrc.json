@@ -24,6 +24,8 @@
 
 		"arrow-body-style": "off",
 
+		"import/extensions": "off",
+
 		"react/jsx-no-useless-fragment": "off",
 		"react/require-default-props": "warn",
 		"react/no-array-index-key": "warn",

@@ -1,6 +1,5 @@
-import { CollectionPage } from './components/Collection';
+import { CollectionPage } from './features/collections';
 import { Navbar } from './components/Navbar';
-import './css/App.css';
 
 function App() {
   return (
