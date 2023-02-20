@@ -20,7 +20,7 @@ export const CollectionTreeItem = ({
     if (subCollectionIdsCount > 0) {
       return (
         <span
-          className={`px-1 transition-colors ${
+          className={`pl-1.5 pr-1 transition-colors ${
             expanded ? 'text-neutral-100' : 'text-neutral-500'
           }`}
         >
@@ -33,9 +33,9 @@ export const CollectionTreeItem = ({
 
   return (
     <div className="border-l border-neutral-700 w-full">
-      <div className="flex flex-row w-full justify-between group transition-colors hover:bg-neutral-800 rounded-md ">
+      <div className="flex flex-row w-full justify-between group transition-colors hover:bg-neutral-800 rounded-tr-md rounded-br-md">
         <button
-          className="text-sm hover:bg-neutral-700 pr-2 rounded transition-colors"
+          className="text-sm hover:bg-neutral-700 pr-2 rounded-tr-md rounded-br-md transition-colors"
           onClick={handleOnClick}
         >
           {renderExpandTriangle()}
@@ -55,7 +55,7 @@ export const CollectionTreeItem = ({
       </div>
 
       <div
-        className={`pl-4 overflow-hidden transition-[height] ${
+        className={`pl-3 overflow-hidden transition-[height] ${
           !expanded ? 'h-0' : 'h-fit'
         }`}
       >
