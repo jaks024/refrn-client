@@ -1,5 +1,5 @@
+import { CollectionTree } from '@/features/collectionTree';
 import { NavButton } from './NavButton';
-import { NavCollection } from './NavCollection';
 
 export function Navbar() {
   return (
@@ -7,7 +7,7 @@ export function Navbar() {
       <h1 className="w-full font-black text-4xl leading-loose px-6 pt-4 pb-2">
         refrn.
       </h1>
-      <NavCollection />
+      <CollectionTree />
       <div className="p-6">
         <NavButton />
         <NavButton />

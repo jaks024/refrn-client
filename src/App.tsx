@@ -1,4 +1,4 @@
-import { CollectionPage } from './features/collections';
+import { CollectionPage } from '@/features/collections';
 import { Navbar } from './components/Navbar';
 
 function App() {
