@@ -5,6 +5,8 @@ export interface Collection {
   imageIds: string[];
   subCollectionIds: string[];
   cover: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Image {
@@ -15,5 +17,16 @@ export interface Image {
   source: string;
   tags: string[];
   transforms: string[];
-  createdDate: Date;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface User {
+  _id: string;
+  username: string;
+  email: string;
+  googleId: string;
+  collectionIds: string[];
+  createdAt: string;
+  updatedAt: string;
 }

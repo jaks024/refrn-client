@@ -10,6 +10,8 @@ export const CollectionTree = () => {
       imageIds: [],
       subCollectionIds: ['3'],
       cover: 'string',
+      createdAt: '',
+      updatedAt: '',
     },
     {
       _id: '2',
@@ -18,6 +20,8 @@ export const CollectionTree = () => {
       imageIds: [],
       subCollectionIds: ['4'],
       cover: 'string',
+      createdAt: '',
+      updatedAt: '',
     },
   ];
   const subs: Collection[] = [
@@ -28,6 +32,8 @@ export const CollectionTree = () => {
       imageIds: [],
       subCollectionIds: [],
       cover: 'string',
+      createdAt: '',
+      updatedAt: '',
     },
     {
       _id: '4',
@@ -36,6 +42,8 @@ export const CollectionTree = () => {
       imageIds: [],
       subCollectionIds: [],
       cover: 'string',
+      createdAt: '',
+      updatedAt: '',
     },
     {
       _id: '5',
@@ -44,6 +52,8 @@ export const CollectionTree = () => {
       imageIds: [],
       subCollectionIds: [],
       cover: 'string',
+      createdAt: '',
+      updatedAt: '',
     },
   ];
 
