@@ -1,6 +1,7 @@
 import { Collection } from '@/types/objects';
 import { CollectionTreeItem } from './ColletionTreeItem';
 import { v4 } from 'uuid';
+
 export const CollectionTree = () => {
   const testCollectiosn: Collection[] = [
     {

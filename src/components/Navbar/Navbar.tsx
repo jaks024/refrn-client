@@ -1,4 +1,4 @@
-import { CollectionTree } from '@/features/collectionTree';
+import { CollectionTree } from '@/features/collections';
 import { NavButton } from './NavButton';
 
 export function Navbar() {
