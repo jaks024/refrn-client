@@ -8,7 +8,6 @@ import {
 
 const queryConfig: DefaultOptions = {
   queries: {
-    useErrorBoundary: true,
     refetchOnWindowFocus: false,
     retry: false,
   },

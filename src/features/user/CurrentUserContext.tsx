@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 import { UserContextType } from './types';
 
-export const UserContext = createContext<UserContextType>({
+export const CurrentUserContext = createContext<UserContextType>({
   userData: null,
 });
