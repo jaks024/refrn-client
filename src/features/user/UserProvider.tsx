@@ -5,7 +5,16 @@ import { CurrentUserContext } from './CurrentUserContext';
 import { useUserData } from './api/userData';
 
 export const UserProvider = ({ children }: PropsWithChildren) => {
-  const [userData, setUserData] = useState<User>();
+  const placeholderUser: User = {
+    _id: '',
+    username: '',
+    email: '',
+    googleId: '',
+    collectionIds: [],
+    createdAt: '',
+    updatedAt: '',
+  };
+  const [userData, setUserData] = useState<User>(placeholderUser);
 
   useUserData({
     userId: '63f2ca792570c6c3f23b5ce9',

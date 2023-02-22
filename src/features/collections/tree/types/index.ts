@@ -5,3 +5,10 @@ export interface CollectionTreeItemProps extends PropsWithChildren {
   imageIdsCount: number;
   subCollectionIdsCount: number;
 }
+
+export interface CollectionIdentifierTree {
+  id: string;
+  name: string;
+  imageIdsCount: number;
+  subCollections: CollectionIdentifierTree[];
+}

@@ -1,87 +1,54 @@
-import { Collection } from '@/types/objects';
 import { CollectionTreeItem } from './ColletionTreeItem';
 import { v4 } from 'uuid';
+import { useCollectionIdentifierTree } from '../../api/collectionIdentifierTree';
+import { useCurrentUserData } from '@/features/user/hooks/useCurrentUserData';
+import { useState } from 'react';
+import { CollectionIdentifierTree } from '../types';
 
 export const CollectionTree = () => {
-  const testCollectiosn: Collection[] = [
-    {
-      _id: '1',
-      name: 'string',
-      description: 'string',
-      imageIds: [],
-      subCollectionIds: ['3'],
-      cover: 'string',
-      createdAt: '',
-      updatedAt: '',
-    },
-    {
-      _id: '2',
-      name: 'string',
-      description: 'string',
-      imageIds: [],
-      subCollectionIds: ['4'],
-      cover: 'string',
-      createdAt: '',
-      updatedAt: '',
-    },
-  ];
-  const subs: Collection[] = [
-    {
-      _id: '3',
-      name: 'string',
-      description: 'string',
-      imageIds: [],
-      subCollectionIds: [],
-      cover: 'string',
-      createdAt: '',
-      updatedAt: '',
-    },
-    {
-      _id: '4',
-      name: 'string',
-      description: 'string',
-      imageIds: [],
-      subCollectionIds: [],
-      cover: 'string',
-      createdAt: '',
-      updatedAt: '',
-    },
-    {
-      _id: '5',
-      name: 'string',
-      description: 'string',
-      imageIds: [],
-      subCollectionIds: [],
-      cover: 'string',
-      createdAt: '',
-      updatedAt: '',
-    },
-  ];
+  const [userCollections, setUserCollections] = useState<CollectionIdentifierTree[]>([]);
+  const { userData } = useCurrentUserData();
 
-  const renderTreeItem = (collectionIds: Collection[]) => {
+  useCollectionIdentifierTree({
+    collectionIds: userData.collectionIds,
+    config: {
+      enabled: userData.collectionIds.length > 0,
+      onSuccess(data) {
+        setUserCollections((cols) => {
+          const index = cols.findIndex((c) => c.id === data.id);
+          if (index === -1) {
+            cols.push(data);
+          } else {
+            cols[index] = data;
+          }
+          return cols;
+        });
+      },
+    },
+  });
+
+  const renderTreeItem = (collectionIds: CollectionIdentifierTree[]) => {
     if (collectionIds.length === 0) {
       return <></>;
     }
-    const subCollections: Collection[] = structuredClone(subs); // get collections using subCollectionId
-    subs.pop();
-
-    return collectionIds.map((collection: Collection) => {
+    return collectionIds.map((collection: CollectionIdentifierTree) => {
       return (
         <CollectionTreeItem
           key={v4()}
           name={collection.name}
-          imageIdsCount={collection.imageIds.length}
-          subCollectionIdsCount={subCollections.length}
+          imageIdsCount={collection.imageIdsCount}
+          subCollectionIdsCount={collection.subCollections.length}
         >
-          {renderTreeItem(subCollections)}
+          {renderTreeItem(collection.subCollections)}
         </CollectionTreeItem>
       );
     });
   };
+
   return (
     <div className="px-6 grow">
       <h2 className="font-bold text-xl leading-loose">your collections</h2>
-      <div>{renderTreeItem(testCollectiosn)}</div>
+      <div>{renderTreeItem(userCollections)}</div>
     </div>
   );
 };

@@ -28,7 +28,7 @@ export const CollectionTreeItem = ({
         </span>
       );
     }
-    return <span className="text-neutral-700 text-sm pr-0.5">—</span>;
+    return <></>;
   };
 
   return (
@@ -38,8 +38,9 @@ export const CollectionTreeItem = ({
           className="text-sm hover:bg-neutral-700 pr-2 rounded-tr-md rounded-br-md transition-colors"
           onClick={handleOnClick}
         >
-          {renderExpandTriangle()}
+          <span className="text-neutral-700 text-sm pr-0.5">—</span>
           {name} ⋅ {imageIdsCount}
+          {renderExpandTriangle()}
         </button>
 
         <button className="text-sm transition-[background,opacity] hover:bg-neutral-700 px-1 rounded opacity-0 group-hover:opacity-100">
