@@ -3,6 +3,7 @@ import { QueryClientProvider } from 'react-query';
 import { Navbar } from './components/Navbar';
 import { UserProvider } from './features/user';
 import { queryClient } from './libs/react-query';
+import 'simplebar-react/dist/simplebar.min.css';
 
 function App() {
   return (

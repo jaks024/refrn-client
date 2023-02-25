@@ -1,23 +1,34 @@
-import { useState } from 'react';
+import { PlusIcon } from '@/components/Icons';
+import { useMemo, useState } from 'react';
+import { useCollections } from '../../api/collections';
+import { useCreateCollection } from '../../api/createCollection';
+import { useDeleteCollection } from '../../api/deleteCollection';
+import { generateNewCollectionData } from '../constants';
 import { CollectionTreeItemProps } from '../types';
 
 export const CollectionTreeItem = ({
+  parentId,
+  collectionId,
   children,
-  name,
-  imageIdsCount,
-  subCollectionIdsCount,
 }: CollectionTreeItemProps) => {
+  const { data } = useCollections({ collectionId });
+  const createCollectionQuery = useCreateCollection({ parentCollectionId: collectionId });
+  const deleteCollectionQuery = useDeleteCollection({ parentCollectionId: parentId });
   const [expanded, setExpanded] = useState(false);
 
+  if (data === null || data === undefined) {
+    return <></>;
+  }
+
   const handleOnClick = () => {
-    if (subCollectionIdsCount === 0) {
+    if (data.subCollectionIds.length === 0) {
       return;
     }
     setExpanded(!expanded);
   };
 
   const renderExpandTriangle = () => {
-    if (subCollectionIdsCount > 0) {
+    if (data.subCollectionIds.length > 0) {
       return (
         <span
           className={`pl-1.5 pr-1 transition-colors ${
@@ -31,19 +42,48 @@ export const CollectionTreeItem = ({
     return <></>;
   };
 
+  const handleCreate = async () => {
+    await createCollectionQuery.mutateAsync(generateNewCollectionData(collectionId));
+  };
+
+  const handleDelete = () => {};
+
+  const renderSubCollections = () => {
+    if (data.subCollectionIds.length === 0) {
+      console.log('cancelled', data.subCollectionIds.length, collectionId);
+      return <></>;
+    }
+
+    return data.subCollectionIds.map((c) => {
+      console.log('rendered', collectionId);
+      return <CollectionTreeItem key={c} collectionId={c} parentId={collectionId} />;
+    });
+  };
+
   return (
-    <div className="border-l border-neutral-700 w-full">
-      <div className="flex flex-row w-full justify-between group transition-colors hover:bg-neutral-800 rounded-tr-md rounded-br-md">
+    <div className="border-l border-neutral-700 w-fit">
+      <div className="flex flex-row justify-start w-fit group transition-colors hover:bg-neutral-800 rounded-tr-md rounded-br-md">
         <button
-          className="text-sm hover:bg-neutral-700 pr-2 rounded-tr-md rounded-br-md transition-colors"
+          className="flex flex-row text-sm hover:bg-neutral-700 pr-2 rounded-tr-md rounded-br-md transition-colors"
           onClick={handleOnClick}
         >
           <span className="text-neutral-700 text-sm pr-0.5">—</span>
-          {name} ⋅ {imageIdsCount}
+          <span className="truncate">{data.name}</span>
+          <span className="px-2">⋅</span>
+          <span>{data.imageIds.length}</span>
           {renderExpandTriangle()}
         </button>
 
-        <button className="text-sm transition-[background,opacity] hover:bg-neutral-700 px-1 rounded opacity-0 group-hover:opacity-100">
+        <button
+          className="grow text-sm transition-[background,opacity] hover:bg-neutral-700 px-1 rounded opacity-0 group-hover:opacity-100"
+          onClick={handleCreate}
+        >
+          <PlusIcon />
+        </button>
+        <button
+          className="text-sm transition-[background,opacity] hover:bg-neutral-700 px-1 rounded opacity-0 group-hover:opacity-100"
+          onClick={handleDelete}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -55,12 +95,9 @@ export const CollectionTreeItem = ({
         </button>
       </div>
 
-      <div
-        className={`pl-3 overflow-hidden transition-[height] ${
-          !expanded ? 'h-0' : 'h-fit'
-        }`}
-      >
+      <div className={`pl-3 transition-[height] ${!expanded ? 'h-0 overflow-hidden' : 'h-fit'}`}>
         {children}
+        {renderSubCollections()}
       </div>
     </div>
   );

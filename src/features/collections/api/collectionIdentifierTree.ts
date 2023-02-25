@@ -1,6 +1,5 @@
 import { axios } from '@/libs/axios';
-import { ExtractFnReturnType, QueryConfig } from '@/libs/react-query';
-import { Collection } from '@/types/objects';
+import { ExtractFnReturnType, queryClient, QueryConfig } from '@/libs/react-query';
 import { useQueries, useQuery } from 'react-query';
 import { CollectionIdentifierTree } from '../tree/types';
 
@@ -32,4 +31,8 @@ export const useCollectionIdentifierTree = ({
       };
     }),
   );
+};
+
+export const InvalidateCollection = (collectionId) => {
+  queryClient.invalidateQueries(['collection-identifier', collectionId]);
 };

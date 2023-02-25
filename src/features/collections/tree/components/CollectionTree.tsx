@@ -1,54 +1,58 @@
 import { CollectionTreeItem } from './ColletionTreeItem';
-import { v4 } from 'uuid';
-import { useCollectionIdentifierTree } from '../../api/collectionIdentifierTree';
 import { useCurrentUserData } from '@/features/user/hooks/useCurrentUserData';
-import { useState } from 'react';
-import { CollectionIdentifierTree } from '../types';
+import { useCreateCollection } from '../../api/createCollection';
+import { PlusIcon } from '@/components/Icons';
+import { generateNewCollectionData } from '../constants';
+import SimpleBar from 'simplebar-react';
 
 export const CollectionTree = () => {
-  const [userCollections, setUserCollections] = useState<CollectionIdentifierTree[]>([]);
-  const { userData } = useCurrentUserData();
+  const { userData, updateUserQuery, userDataDto } = useCurrentUserData();
 
-  useCollectionIdentifierTree({
-    collectionIds: userData.collectionIds,
+  const createCollectionQuery = useCreateCollection({
+    parentCollectionId: '',
     config: {
-      enabled: userData.collectionIds.length > 0,
-      onSuccess(data) {
-        setUserCollections((cols) => {
-          const index = cols.findIndex((c) => c.id === data.id);
-          if (index === -1) {
-            cols.push(data);
-          } else {
-            cols[index] = data;
-          }
-          return cols;
-        });
+      onSuccess(data, _, __) {
+        console.log(data);
+        userDataDto.collectionIds.push(data.id);
+        updateUserQuery.mutate({ id: userData._id, payload: userDataDto });
       },
     },
   });
 
-  const renderTreeItem = (collectionIds: CollectionIdentifierTree[]) => {
+  const renderTreeItem = (collectionIds: string[]) => {
     if (collectionIds.length === 0) {
-      return <></>;
-    }
-    return collectionIds.map((collection: CollectionIdentifierTree) => {
       return (
-        <CollectionTreeItem
-          key={v4()}
-          name={collection.name}
-          imageIdsCount={collection.imageIdsCount}
-          subCollectionIdsCount={collection.subCollections.length}
-        >
-          {renderTreeItem(collection.subCollections)}
-        </CollectionTreeItem>
+        <div className="text-sm font-bold text-neutral-700 text-center">
+          you have no collections!
+        </div>
       );
+    }
+    return collectionIds.map((id: string) => {
+      console.log('rendered');
+      return <CollectionTreeItem key={id} collectionId={id} parentId="" />;
     });
   };
 
+  const handleCreate = async () => {
+    await createCollectionQuery.mutateAsync(generateNewCollectionData());
+  };
+
   return (
-    <div className="px-6 grow">
-      <h2 className="font-bold text-xl leading-loose">your collections</h2>
-      <div>{renderTreeItem(userCollections)}</div>
+    <div className="flex flex-col px-6 h-full overflow-hidden">
+      <div className="flex justify-between">
+        <h2 className="font-bold text-xl leading-loose">your collections</h2>
+        <button
+          className="text-sm transition-[background,opacity]  hover:bg-neutral-700 px-4 rounded group-hover:opacity-100"
+          onClick={handleCreate}
+        >
+          <PlusIcon />
+        </button>
+      </div>
+      <div className="grow overflow-hidden pb-10">
+        <SimpleBar className="flex pb-2 pr-2 h-full">
+          {renderTreeItem(userData.collectionIds)}
+        </SimpleBar>
+      </div>
     </div>
   );
 };

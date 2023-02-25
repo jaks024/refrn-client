@@ -1,9 +1,8 @@
 import { PropsWithChildren } from 'react';
 
 export interface CollectionTreeItemProps extends PropsWithChildren {
-  name: string;
-  imageIdsCount: number;
-  subCollectionIdsCount: number;
+  parentId: string;
+  collectionId: string;
 }
 
 export interface CollectionIdentifierTree {
@@ -12,3 +11,22 @@ export interface CollectionIdentifierTree {
   imageIdsCount: number;
   subCollections: CollectionIdentifierTree[];
 }
+
+export interface CreatedCollectionResult {
+  id: string;
+}
+
+export interface CreateCollectionDto {
+  name: string;
+  description: string;
+  imageIds: string[];
+  subCollectionIds: string[];
+  cover: string;
+  parentId: string;
+}
+
+export interface DeleteCollectionDto {
+  parentId: string;
+}
+
+export interface UpdateCollectionDto {}
