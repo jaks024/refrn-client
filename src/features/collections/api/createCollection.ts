@@ -22,7 +22,7 @@ export const useCreateCollection = ({ parentCollectionId, config }: UseCreateCol
       if (config && config.onSuccess) {
         config.onSuccess(data, _, __);
       }
-      queryClient.invalidateQueries(['collection', parentCollectionId]);
+      queryClient.invalidateQueries(parentCollectionId);
     },
   });
 };

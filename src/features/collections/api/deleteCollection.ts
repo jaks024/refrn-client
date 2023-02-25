@@ -1,17 +1,22 @@
 import { axios } from '@/libs/axios';
 import { MutationConfig, queryClient } from '@/libs/react-query';
+import { Collection } from '@/types/objects';
 import { useMutation } from 'react-query';
-import { CreateCollectionDto, CreatedCollectionResult, DeleteCollectionDto } from '../tree/types';
 
 export const deleteCollection = ({
   collectionId,
-  payload,
+  parentId,
+  isParentUser,
 }: {
   collectionId: string;
-  payload: DeleteCollectionDto;
-}): Promise<CreatedCollectionResult> => {
+  parentId: string;
+  isParentUser: boolean;
+}): Promise<Collection> => {
   return axios.delete(`/collection/${collectionId}`, {
-    data: payload,
+    data: {
+      parentId,
+      isParentUser,
+    },
   });
 };
 
@@ -25,7 +30,7 @@ export const useDeleteCollection = ({ parentCollectionId, config }: UseDeleteCol
     ...config,
     mutationFn: deleteCollection,
     onSuccess() {
-      queryClient.invalidateQueries(['collection', parentCollectionId]);
+      queryClient.invalidateQueries(parentCollectionId);
     },
   });
 };

@@ -17,7 +17,7 @@ type UseUserDataOptions = {
 export const useUserData = ({ userId, config }: UseUserDataOptions) => {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
-    queryKey: ['userdata', userId],
+    queryKey: userId,
     queryFn: () => getUserData({ userId }),
   });
 };

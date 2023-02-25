@@ -29,7 +29,7 @@ export const CollectionTree = () => {
     }
     return collectionIds.map((id: string) => {
       console.log('rendered');
-      return <CollectionTreeItem key={id} collectionId={id} parentId="" />;
+      return <CollectionTreeItem key={id} collectionId={id} parentId={userData._id} isParentUser />;
     });
   };
 

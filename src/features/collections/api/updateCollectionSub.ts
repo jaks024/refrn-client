@@ -1,7 +1,6 @@
 import { axios } from '@/libs/axios';
 import { MutationConfig } from '@/libs/react-query';
 import { useMutation } from 'react-query';
-import { UpdateCollectionDto } from '../tree/types';
 
 export const updateCollection = ({
   id,
@@ -13,11 +12,11 @@ export const updateCollection = ({
   return axios.put(`/collection/${id}/sub`, payload);
 };
 
-type UseUpdateCollectionOptions = {
+type UseUpdateCollectionSubOptions = {
   config?: MutationConfig<typeof updateCollection>;
 };
 
-export const useUpdateCollection = ({ config }: UseUpdateCollectionOptions) => {
+export const useUpdateCollectionSub = ({ config }: UseUpdateCollectionSubOptions) => {
   return useMutation({
     ...config,
     mutationFn: updateCollection,

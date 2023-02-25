@@ -8,6 +8,7 @@ import { CollectionTreeItemProps } from '../types';
 
 export const CollectionTreeItem = ({
   parentId,
+  isParentUser,
   collectionId,
   children,
 }: CollectionTreeItemProps) => {
@@ -46,7 +47,9 @@ export const CollectionTreeItem = ({
     await createCollectionQuery.mutateAsync(generateNewCollectionData(collectionId));
   };
 
-  const handleDelete = () => {};
+  const handleDelete = async () => {
+    await deleteCollectionQuery.mutateAsync({ collectionId, parentId, isParentUser });
+  };
 
   const renderSubCollections = () => {
     if (data.subCollectionIds.length === 0) {
