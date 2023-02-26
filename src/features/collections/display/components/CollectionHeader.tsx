@@ -1,21 +1,32 @@
-export function CollectionHeader() {
-  return (
-    <div className="w-full flex flex-col h-fit px-6 pt-4 pb-2">
-      <div className="flex">
-        <h1 className="text-4xl font-black truncate leading-loose pb-4">
-          your collection 1
-        </h1>
-      </div>
+import { Collection } from '@/types/objects';
 
-      <p className="h-fit w-full pb-2">
-        {`Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a`}
-      </p>
+export function CollectionHeader({ collection }: { collection: Collection }) {
+  const renderTags = (tags: string[]) => {
+    return (
+      <div className="gap-1 flex">
+        {tags.map((t, index) => {
+          return (
+            <span
+              key={`${collection._id}-tag-${index}`}
+              className="transition-colors hover:bg-neutral-700 px-2 border border-neutral-700 rounded-md"
+            >
+              {t}
+            </span>
+          );
+        })}
+      </div>
+    );
+  };
+
+  return (
+    <div className="w-full flex flex-col h-fit gap-1">
+      <div className="flex">
+        <h1 className="text-4xl font-black truncate leading-tight pb-3">{collection.name}</h1>
+      </div>
+      <p className="h-fit w-full p">{collection.description}</p>
+      {renderTags(collection.tags)}
       <span>
-        {`Images: 50 | Last Edited: Dec 1, 2023 | Created: Sep 1, 2023 | #tag1,
-        #tag2, #tag3, #tag4, #reallylongtag1, #mediumtag1`}
+        {`Images: ${collection.imageIds.length} | Last Updated: ${collection.updatedAt} | Created: ${collection.createdAt}`}
       </span>
     </div>
   );

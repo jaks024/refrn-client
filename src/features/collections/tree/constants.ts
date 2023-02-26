@@ -6,6 +6,7 @@ export const generateNewCollectionData = (parentId: string = ''): CreateCollecti
     description: 'my new collection',
     imageIds: [],
     subCollectionIds: [],
+    tags: [],
     cover: '',
     parentId,
   };

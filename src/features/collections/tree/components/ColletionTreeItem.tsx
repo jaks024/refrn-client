@@ -1,4 +1,5 @@
 import { PlusIcon } from '@/components/Icons';
+import { useCollectionStore } from '@/stores';
 import { useMemo, useState } from 'react';
 import { useCollections } from '../../api/collections';
 import { useCreateCollection } from '../../api/createCollection';
@@ -16,12 +17,13 @@ export const CollectionTreeItem = ({
   const createCollectionQuery = useCreateCollection({ parentCollectionId: collectionId });
   const deleteCollectionQuery = useDeleteCollection({ parentCollectionId: parentId });
   const [expanded, setExpanded] = useState(false);
-
+  const { setCurrentCollection } = useCollectionStore();
   if (data === null || data === undefined) {
     return <></>;
   }
 
   const handleOnClick = () => {
+    setCurrentCollection(data);
     if (data.subCollectionIds.length === 0) {
       return;
     }

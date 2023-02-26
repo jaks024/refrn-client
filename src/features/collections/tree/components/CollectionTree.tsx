@@ -23,7 +23,7 @@ export const CollectionTree = () => {
     if (collectionIds.length === 0) {
       return (
         <div className="text-sm font-bold text-neutral-700 text-center">
-          you have no collections!
+          begin by creating a collection!
         </div>
       );
     }

@@ -15,6 +15,7 @@ export interface CreateCollectionDto {
   description: string;
   imageIds: string[];
   subCollectionIds: string[];
+  tags: string[];
   cover: string;
   parentId: string;
 }

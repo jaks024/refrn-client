@@ -4,6 +4,7 @@ export interface Collection {
   description: string;
   imageIds: string[];
   subCollectionIds: string[];
+  tags: string[];
   cover: string;
   createdAt: string;
   updatedAt: string;
