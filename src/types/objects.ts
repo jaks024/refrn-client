@@ -15,7 +15,8 @@ export interface Image {
   url: string;
   name: string;
   description: string;
-  source: string;
+  sourceName: string;
+  sourceUrl: string;
   tags: string[];
   transforms: string[];
   createdAt: string;

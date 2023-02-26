@@ -1,3 +1,4 @@
+import { FadeIn } from '@/components/Animation';
 import { Collection } from '@/types/objects';
 
 export function CollectionHeader({ collection }: { collection: Collection }) {
@@ -6,12 +7,14 @@ export function CollectionHeader({ collection }: { collection: Collection }) {
       <div className="gap-1 flex">
         {tags.map((t, index) => {
           return (
-            <span
-              key={`${collection._id}-tag-${index}`}
-              className="transition-colors hover:bg-neutral-700 px-2 border border-neutral-700 rounded-md"
-            >
-              {t}
-            </span>
+            <FadeIn>
+              <span
+                key={`${collection._id}-tag-${index}`}
+                className="transition-colors hover:bg-neutral-700 px-2 py-0.5 border border-neutral-700 rounded-md"
+              >
+                {t}
+              </span>
+            </FadeIn>
           );
         })}
       </div>

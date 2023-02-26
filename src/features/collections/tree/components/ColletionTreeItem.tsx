@@ -1,3 +1,4 @@
+import { FadeIn } from '@/components/Animation';
 import { PlusIcon } from '@/components/Icons';
 import { useCollectionStore } from '@/stores';
 import { useMemo, useState } from 'react';
@@ -66,44 +67,46 @@ export const CollectionTreeItem = ({
   };
 
   return (
-    <div className="border-l border-neutral-700 w-fit">
-      <div className="flex flex-row justify-start w-fit group transition-colors hover:bg-neutral-800 rounded-tr-md rounded-br-md">
-        <button
-          className="flex flex-row text-sm hover:bg-neutral-700 pr-2 rounded-tr-md rounded-br-md transition-colors"
-          onClick={handleOnClick}
-        >
-          <span className="text-neutral-700 text-sm pr-0.5">—</span>
-          <span className="truncate">{data.name}</span>
-          <span className="px-2">⋅</span>
-          <span>{data.imageIds.length}</span>
-          {renderExpandTriangle()}
-        </button>
-
-        <button
-          className="grow text-sm transition-[background,opacity] hover:bg-neutral-700 px-1 rounded opacity-0 group-hover:opacity-100"
-          onClick={handleCreate}
-        >
-          <PlusIcon />
-        </button>
-        <button
-          className="text-sm transition-[background,opacity] hover:bg-neutral-700 px-1 rounded opacity-0 group-hover:opacity-100"
-          onClick={handleDelete}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="w-3 h-3"
+    <FadeIn>
+      <div className="border-l border-neutral-700 w-fit">
+        <div className="flex flex-row justify-start w-fit group transition-colors hover:bg-neutral-800 rounded-tr-md rounded-br-md">
+          <button
+            className="flex flex-row text-sm hover:bg-neutral-700 pr-2 rounded-tr-md rounded-br-md transition-colors"
+            onClick={handleOnClick}
           >
-            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
-          </svg>
-        </button>
-      </div>
+            <span className="text-neutral-700 text-sm pr-0.5">—</span>
+            <span className="truncate">{data.name}</span>
+            <span className="px-2">⋅</span>
+            <span>{data.imageIds.length}</span>
+            {renderExpandTriangle()}
+          </button>
 
-      <div className={`pl-3 transition-[height] ${!expanded ? 'h-0 overflow-hidden' : 'h-fit'}`}>
-        {children}
-        {renderSubCollections()}
+          <button
+            className="grow text-sm transition-[background,opacity] hover:bg-neutral-700 px-1 rounded opacity-0 group-hover:opacity-100"
+            onClick={handleCreate}
+          >
+            <PlusIcon />
+          </button>
+          <button
+            className="text-sm transition-[background,opacity] hover:bg-neutral-700 px-1 rounded opacity-0 group-hover:opacity-100"
+            onClick={handleDelete}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="w-3 h-3"
+            >
+              <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+            </svg>
+          </button>
+        </div>
+
+        <div className={`pl-3 transition-[height] ${!expanded ? 'h-0 overflow-hidden' : 'h-fit'}`}>
+          {children}
+          {renderSubCollections()}
+        </div>
       </div>
-    </div>
+    </FadeIn>
   );
 };
