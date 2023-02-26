@@ -19,7 +19,7 @@ const EMTPY_COLLECTION: Collection = {
 };
 
 export const useCollectionStore = create<CollectionState>()((set) => ({
-  currentCollection: EMTPY_COLLECTION,
+  currentCollection: undefined,
   setCurrentCollection(newCollection) {
     set(() => ({ currentCollection: newCollection }));
   },

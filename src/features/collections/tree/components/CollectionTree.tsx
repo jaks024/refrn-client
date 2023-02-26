@@ -4,6 +4,7 @@ import { useCreateCollection } from '../../api/createCollection';
 import { PlusIcon } from '@/components/Icons';
 import { generateNewCollectionData } from '../constants';
 import SimpleBar from 'simplebar-react';
+import { NothingHere } from '@/components/Common';
 
 export const CollectionTree = () => {
   const { userData, updateUserQuery, userDataDto } = useCurrentUserData();
@@ -21,11 +22,7 @@ export const CollectionTree = () => {
 
   const renderTreeItem = (collectionIds: string[]) => {
     if (collectionIds.length === 0) {
-      return (
-        <div className="text-sm font-bold text-neutral-700 text-center">
-          begin by creating a collection!
-        </div>
-      );
+      return <NothingHere message="begin by creating a collection! ヽ(・∀・)ﾉ" />;
     }
     return collectionIds.map((id: string) => {
       console.log('rendered');

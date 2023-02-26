@@ -1,4 +1,5 @@
 import { FadeIn } from '@/components/Animation';
+import { NothingHere } from '@/components/Common';
 import { useImages } from '@/features/images';
 import { Collection, Image } from '@/types/objects';
 import { CollectionImage } from './CollectionImage';
@@ -14,10 +15,9 @@ export const CollectionContent = ({ collection }: { collection: Collection }) =>
   const renderImages = (images: Image[]) => {
     if (images.length === 0) {
       return (
-        <div className="w-full text-center p-20 font-semibold text-sm text-neutral-700">
-          no images in collection {`(⌒_⌒;)	`}
+        <NothingHere message={`no images in collection ${`(⌒_⌒;)	`}`}>
           <div>begin by adding some!</div>
-        </div>
+        </NothingHere>
       );
     }
     console.log(images);

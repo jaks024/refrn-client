@@ -19,12 +19,12 @@ export const CollectionImage = ({ image }: { image: Image }) => {
     );
   };
   return (
-    <button className="w-full h-full relative group">
+    <div className="w-full h-full relative group cursor-pointer">
       <FadeIn>
         <div className="h-52 w-auto">
           <img className="w-full h-full object-cover" src={image.url} alt={image.description} />
         </div>
-        <div className="absolute flex flex-col p-2 justify-end text-left text-sm font-semibold bg-neutral-900 top-0 transition-opacity opacity-0 group-hover:opacity-70 w-full h-full">
+        <div className=" pointer-events-none absolute flex flex-col p-2 justify-end text-left text-sm font-semibold bg-neutral-900 top-0 transition-opacity opacity-0 group-hover:opacity-70 w-full h-full">
           <span>{renderTags(image.tags)}</span>
           <a href={image.sourceUrl} target="_blank">
             {image.sourceName}
@@ -32,6 +32,6 @@ export const CollectionImage = ({ image }: { image: Image }) => {
           <span>{image.createdAt}</span>
         </div>
       </FadeIn>
-    </button>
+    </div>
   );
 };
