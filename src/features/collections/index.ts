@@ -1,2 +1,2 @@
-export * from './display/components/CollectionPage';
+export * from './CollectionPage';
 export * from './tree/components/CollectionTree';

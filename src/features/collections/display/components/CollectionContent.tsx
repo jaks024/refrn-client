@@ -25,11 +25,8 @@ export const CollectionContent = ({ collection }: { collection: Collection }) =>
       img ? (
         <CollectionImage key={img._id + index} image={img} />
       ) : (
-        <FadeIn>
-          <div
-            key={`${collection._id}-loading-${index}`}
-            className="w-full h-full animate-pulse bg-neutral-800"
-          />
+        <FadeIn key={`${collection._id}-loading-${index}`}>
+          <div className="w-full h-full animate-pulse bg-neutral-800" />
         </FadeIn>
       ),
     );

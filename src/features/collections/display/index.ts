@@ -1,1 +1,1 @@
-export * from './components/CollectionPage';
+export * from '../CollectionPage';
