@@ -19,7 +19,7 @@ export const CollectionControlBar = ({
           type="button"
           onClick={() => tab.onSwitch(tab.id)}
           className={`leading-loose pt-2.5 font-bold p-3 transition-colors px-6 truncate ${
-            currnetTab === tab.id ? 'bg-neutral-800' : ''
+            currnetTab === tab.id ? ' bg-gradient-to-b from-neutral-800 to-neutral-900' : ''
           }`}
         >
           {tab.title}
